@@ -26,13 +26,34 @@ with open(filename, 'r') as csvfile:
         rows.append(row)
 
 
+filename = "name.csv"
+
+# initializing the titles and rows list
+fieldsN = []
+rowsN = []
+
+# reading csv file
+with open(filename, 'r') as csvfile:
+    # creating a csv reader object
+    csvreader = csv.reader(csvfile)
+
+    # extracting field names through first row
+    fieldsN = next(csvreader)
+
+    # extracting each data row one by one
+    for row in csvreader:
+        rowsN.append(row)
+
+
+
 #generating random color
 random_color=list(np.random.choice(range(255),size=3))
 
 
 image = [ ]
 # get the path or directory
-folder_dir = "/home/pawandeep/videoclip/images"
+folder_dir = os.getcwd()+"/images"
+
 for images in os.listdir(folder_dir):
 
  # check if the image end swith png or jpg or jpeg
@@ -51,16 +72,17 @@ for list  in  rows:
      color_clip=ColorClip(size=(tc_width+1000,tc_height+900),color=(random_color))
      color_clip=color_clip.set_opacity(.5)
      final_clip=CompositeVideoClip([color_clip,text_clip])
-     final_clip=final_clip.set_duration(2).crossfadeout(2.0)	
+     final_clip=final_clip.set_duration(2).crossfadeout(1.0)
      clips.append(final_clip)
 
 for i in range(len(image)):
      clip =ImageClip("images/"+image[i] ).set_duration(2)
-     clip = clip.crossfadein(2.0) 
+     clip = clip.crossfadein(1.0) 
      clips.insert(2*i+1, clip)
 
 video_clip = concatenate_videoclips(clips,method="compose")
-video_clip=video_clip.resize(width=1600,height=900)
-video_clip.write_videofile("video-loop1.mp4", fps=24, remove_temp=True, codec="libx264", audio_codec="aac")
+
+for list in rowsN:
+    video_clip.write_videofile( list[0] , fps= int(list[1]), remove_temp=True, codec=list[2], audio_codec=list[3])
 
 
