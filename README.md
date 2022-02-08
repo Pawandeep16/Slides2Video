@@ -24,6 +24,10 @@ Install scikit-image
 
 pip install -U scikit-image
 
+install pillow using command as follow
+
+python3 -m pip install --upgrade Pillow
+
 1. Put the Images in the images folder
 2. Update the CSv file for text in the video.
 3. Run the command --> chmod +x filename.py
