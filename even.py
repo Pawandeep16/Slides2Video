@@ -5,6 +5,7 @@ from os import listdir
 from moviepy.editor import *
 import numpy as np
 import csv
+from skimage.filters import gaussian
 
 #Reading Data from File
 filename = "file.csv"
@@ -64,6 +65,10 @@ for images in os.listdir(folder_dir):
 
 clips=[]
 
+def blur(image):
+    """ Returns a blurred (radius=4 pixels) version of the image """    
+    return gaussian(image.astype(float), sigma=4)
+
 
 for list  in  rows:
      text_clip=TextClip(txt ="\'"+list[1]+"\'",color= list[3],fontsize = int(list[2])  )
@@ -72,13 +77,18 @@ for list  in  rows:
      color_clip=ColorClip(size=(tc_width+1000,tc_height+900),color=(random_color))
      color_clip=color_clip.set_opacity(.5)
      final_clip=CompositeVideoClip([color_clip,text_clip])
-     final_clip=final_clip.set_duration(2).crossfadeout(1.0)
+     final_clip=final_clip.set_duration(2).crossfadeout(2.0)
      clips.append(final_clip)
 
 for i in range(len(image)):
      clip =ImageClip("images/"+image[i] ).set_duration(2)
-     clip = clip.crossfadein(1.0) 
-     clips.insert(2*i+1, clip)
+     clip=clip.set_position("center")
+     clip=clip.resize(height=900)
+     back_clip =ImageClip("images/"+image[1]).set_duration(2)
+     back_clip = back_clip.fl_image( blur )
+     final=CompositeVideoClip([back_clip,clip])
+     final=final.set_duration(2).crossfadein(2.0)
+     clips.insert(2*i+1,final) 
 
 video_clip = concatenate_videoclips(clips,method="compose")
 
