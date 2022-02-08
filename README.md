@@ -16,6 +16,7 @@ sudo apt install imagemagick
 
 goto ---- /etc/ImageMagick-6/policy.xml file  
 In the file comment out the line
+
 "policy domain="path" rights="none" pattern="@*" 
   you can found this at the bottom part of the file
 
