@@ -6,6 +6,8 @@ from moviepy.editor import *
 import numpy as np
 import csv
 from skimage.filters import gaussian
+from PIL import Image
+
 
 #Reading Data from File
 filename = "file.csv"
@@ -81,11 +83,17 @@ for list  in  rows:
      clips.append(final_clip)
 
 for i in range(len(image)):
+     filepath = "images/"+image[i]
+     img = Image.open(filepath)
+     width = img.width
+     height = img.height
      clip =ImageClip("images/"+image[i] ).set_duration(2)
      clip=clip.set_position("center")
-     clip=clip.resize(height=900)
+     if width<600 or height<600:
+        clip=clip.resize(width=1600)
      back_clip =ImageClip("images/"+image[1]).set_duration(2)
      back_clip = back_clip.fl_image( blur )
+     back_clip=back_clip.resize(width=1920,height=1080)
      final=CompositeVideoClip([back_clip,clip])
      final=final.set_duration(2).crossfadein(2.0)
      clips.insert(2*i+1,final) 
