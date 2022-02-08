@@ -83,11 +83,12 @@ for list  in  rows:
 for i in range(len(image)):
      clip =ImageClip("images/"+image[i] ).set_duration(2)
      clip=clip.set_position("center")
+     clip=clip.resize(height=900)
      back_clip =ImageClip("images/"+image[1]).set_duration(2)
      back_clip = back_clip.fl_image( blur )
      final=CompositeVideoClip([back_clip,clip])
      final=final.set_duration(2).crossfadein(2.0)
-     clips.insert(2*i+1,final)
+     clips.insert(2*i+1,final) 
 
 video_clip = concatenate_videoclips(clips,method="compose")
 
