@@ -16,7 +16,7 @@ sudo apt install imagemagick
 
 goto ---- /etc/ImageMagick-6/policy.xml file  
 In the file comment out the line
-<policy domain="path" rights="none" pattern="@*"/>
+#<-- <policy domain="path" rights="none" pattern="@*"/> -->
 
 Install scikit-image
 
