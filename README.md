@@ -1,7 +1,6 @@
 # Slides2Video
-#Images to video
 
-Steps to Follow
+# Steps to Follow
 
 PYHTON must be installed
  
