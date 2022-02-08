@@ -23,9 +23,9 @@ Install scikit-image
 
 pip install -U scikit-image
 
-1.Put the Images in the images folder
-2.Update the CSv file for text in the video.
-3.run the command --> chmod +x filename.py
-4.This will make it executable
-5.run command python3 filename.py
-6.play the video from folder
+1. Put the Images in the images folder
+2. Update the CSv file for text in the video.
+3. Run the command --> chmod +x filename.py
+4. This will make it executable
+5. Run command python3 filename.py
+6. play the video from folder
