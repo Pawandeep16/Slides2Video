@@ -16,11 +16,17 @@ sudo apt install imagemagick
 
 goto ---- /etc/ImageMagick-6/policy.xml file  
 In the file comment out the line
-<policy domain="path" rights="none" pattern="@*"/>
+
+"policy domain="path" rights="none" pattern="@*" 
+  you can found this at the bottom part of the file
 
 Install scikit-image
 
 pip install -U scikit-image
+
+install pillow using command as follow
+
+python3 -m pip install --upgrade Pillow
 
 1. Put the Images in the images folder
 2. Update the CSv file for text in the video.
