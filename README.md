@@ -36,6 +36,7 @@ python3 -m pip install --upgrade Pillow
 6. play the video from folder
 
 #For Windows OS
+- You any editor or compiler like Visual Studio Code or pycharm  
 - Pyhton must be installed 
 - then pip must be installed
 - follow this to install pip https://www.geeksforgeeks.org/how-to-install-pip-on-windows/
