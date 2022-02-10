@@ -34,3 +34,19 @@ python3 -m pip install --upgrade Pillow
 4. This will make it executable
 5. Run command python3 filename.py
 6. play the video from folder
+
+#For Windows OS
+- You any editor or compiler like Visual Studio Code or pycharm  
+- Pyhton must be installed 
+- then pip must be installed
+- follow this to install pip https://www.geeksforgeeks.org/how-to-install-pip-on-windows/
+- install moviepy using command in the command prompt    pip install moviepy
+- ImageMagick must be installed download the imagemagick and install manually from this site https://imagemagick.org/script/download.php#windows
+- Now update the directory  C:\Python39\Lib\site-packages\moviepy  open file name config_defaults.py
+- paste this    IMAGEMAGICK_BINARY = "C:\\Program Files\\ImageMagick-7.1.0-Q16-HDRI\\magick.exe"
+- install skit  using command  pip install -U scikit-image
+- Clone the project  
+- open the even.py file 
+- Remove the very first Line 
+- run the script 
+- Enjoy the Video
