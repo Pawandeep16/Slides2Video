@@ -69,12 +69,13 @@ def blur(image):
     """ Returns a blurred (radius=4 pixels) version of the image """    
     return gaussian(image.astype(float), sigma=4)
 
+
 #Fetching the Texts and its properties from the file.csv
 for list  in  rows:
-     text_clip=TextClip(txt ="\'"+list[1]+"\'",color= list[3],fontsize = int(list[2])  )
+     text_clip=TextClip(txt ="\'"+list[1]+"\'",color= list[3],fontsize = int(list[2]) )
      text_clip=text_clip.set_position("center")
-     tc_width,tc_height=text_clip.size
      for list in rowsN:
+          text_clip = text_clip.resize(width=int(list[4])-50 )
           color_clip=ColorClip(size=(int(list[4]),int(list[5]) ),color=(random_color))
           color_clip=color_clip.set_opacity(.5)
 
