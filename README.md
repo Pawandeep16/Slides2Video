@@ -54,4 +54,3 @@ python3 -m pip install --upgrade Pillow
 - update the resolution in the name.csv file according to your need 
 - Put you images in the image Folder 
 - Update the text for the Captions in the file.csv.
-- also change the font according to your resolution for lower resolutions font should be small 
