@@ -35,6 +35,8 @@ outputfilename = "name.csv"
 fieldsN = []
 rowsN = []
 
+
+
 # reading csv file
 with open(outputfilename, 'r') as csvfile:
     # creating a csv reader object
@@ -66,7 +68,7 @@ for images in os.listdir(folder_dir):
 clips=[]
 #Bluring Effect Function
 def blur(image):
-    """ Returns a blurred (radius=4 pixels) version of the image """    
+    """ Returns a blurred (radius=4 pixels) version of the image """
     return gaussian(image.astype(float), sigma=4)
 
 
@@ -79,32 +81,34 @@ for list  in  rows:
           color_clip=ColorClip(size=(int(list[4]),int(list[5]) ),color=(random_color))
           color_clip=color_clip.set_opacity(.5)
 
-     final_clip=CompositeVideoClip([color_clip,text_clip])
-     final_clip=final_clip.set_duration(2).crossfadeout(2.0)
+          final_clip=CompositeVideoClip([color_clip,text_clip])
+          final_clip=final_clip.set_duration(int(list[7])).crossfadeout(2.0)
      clips.append(final_clip)
 
-#Fetching the Images from the folder Image    
+#Fetching the Images from the folder Image
 for i in range(len(image)):
      filepath = "images/"+image[i]
      img = Image.open(filepath)
      width = img.width
      height = img.height
-     clip =ImageClip("images/"+image[i] ).set_duration(2)
-     clip=clip.set_position("center")
      for list in rowsN:
-          clip=clip.resize(width =int(list[4]),height=int(list[5]))
-          back_clip =ImageClip("images/"+image[1]).set_duration(2)
+          clip =ImageClip("images/"+image[i] ).set_duration(int(list[6]))
+          clip=clip.set_position("center")
+          clip=clip.resize(width = int(list[4]) , height=int(list[5]))
+          if width>int(list[4]) or height > int(list[5]):
+             clip=clip=clip.resize(width = int(list[4]) , height=int(list[5]))
+          back_clip =ImageClip("images/"+image[1]).set_duration(int(list[6]))
           back_clip = back_clip.fl_image( blur )
           back_clip=back_clip.resize(width=int(list[4]),height=int(list[5]))
+ 
+          final=CompositeVideoClip([back_clip,clip])
+          final=final.set_duration(int(list[6])).crossfadein(2.0)
+     clips.insert(2*i+1,final)
 
-     final=CompositeVideoClip([back_clip,clip])
-     final=final.set_duration(2).crossfadein(2.0)
-     clips.insert(2*i+1,final) 
-
-#Putting the all clips together to make it a ready for rendering 
+#Putting the all clips together to make it a ready for rendering
 video_clip = concatenate_videoclips(clips,method="compose")
 
-#Rendering the  video for output Review and getting the data from the file name.csv 
+#Rendering the  video for output Review and getting the data from the file name.csv
 for list in rowsN:
     video_clip1=video_clip.resize(width=int(list[4]),height=int(list[5]))
     video_clip1.write_videofile( list[0] , fps= int(list[1]), remove_temp=True, codec=list[2], audio_codec=list[3])

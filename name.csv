@@ -1,2 +1,2 @@
-VideoName,Fps,Codec,audio_codec,width,height
-Videooutput-name.mp4,24,libx264,aac,1600,900
+VideoName,Fps,Codec,audio_codec,width,height,duration_per_clip,text_duration
+Videooutput-name.mp4,24,libx264,aac,800,600,2,4
