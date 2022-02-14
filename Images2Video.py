@@ -126,12 +126,7 @@ for i in range(len(image)):
           back_clip = back_clip.fl_image( blur )
           back_clip = back_clip.resize(width = cwidth,height=cheight)
           final = CompositeVideoClip([back_clip,clip])
-          for img in image:
-               if image.index(img)%2 == 0:
-                   final = zoom_in_effect(final, 0.04)
-               else :
-                    final = final.crossfadein(effectDuration)  
-                                     
+          final = final.crossfadein(effectDuration)                           
           final=final.set_duration(clip_duration)
           value = final.start
      clips.append(final)
