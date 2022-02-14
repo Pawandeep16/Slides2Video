@@ -7,9 +7,13 @@ import numpy as np
 import csv
 import math
 import numpy
+import random
 from skimage.filters import gaussian
 from PIL import Image
 import itertools
+from moviepy.video.fx.fadein import fadein
+from moviepy.video.fx.fadeout import fadeout
+
 
 #Reading Data from File
 textfilename = "CaptionDetails.csv"
@@ -54,6 +58,12 @@ with open(outputfilename, 'r') as csvfile:
 #generating random color
 random_color=list(np.random.choice(range(255),size=3))
 
+a = transfx.slide_out
+b = transfx.slide_in
+c = transfx.crossfadein
+d = transfx.crossfadeout
+slide = ["bottom","top","left","right"]
+effects = [a,b,c,d]
 
 def zoom_in_effect(clip, zoom_ratio=0.04):
     def effect(get_frame, t):
@@ -103,7 +113,7 @@ clips=[]
 def blur(image):
     """ Returns a blurred (radius=4 pixels) version of the image """
     return gaussian(image.astype(float), sigma=4)
-effects=[ ]
+
 for i in range(len(image)):
      filepath = "images/"+image[i]
      img = Image.open(filepath)
@@ -125,11 +135,23 @@ for i in range(len(image)):
           .set_duration(clip_duration)
           back_clip = back_clip.fl_image( blur )
           back_clip = back_clip.resize(width = cwidth,height=cheight)
-          final = CompositeVideoClip([back_clip,clip])
-          final = final.crossfadein(effectDuration)                           
+          final = CompositeVideoClip([back_clip,clip])  
+                      
           final=final.set_duration(clip_duration)
           value = final.start
+     effect = random.choice(effects)
+     pos = random.choice(slide)
+     if effect == a or effect == b :
+        final = final.fx(effect, duration=effectDuration, side = pos)
+     else :
+        final = final.fx(effect, duration=effectDuration )
      clips.append(final)
+
+
+     
+    
+
+
      
 texts=[]
 
