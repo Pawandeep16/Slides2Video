@@ -99,13 +99,11 @@ def zoom_in_effect(clip, zoom_ratio=0.04):
 image = [ ]
 # get the path or directory
 folder_dir = os.getcwd()+"/images"
-
+types=[".png","jpg",".jpeg",".wpeg"]
 for images in os.listdir(folder_dir):
-
- # check if the image end swith png or jpg or jpeg
- if (images.endswith(".png") or images.endswith(".jpg")\
-        or images.endswith(".jpeg")):
-        image.append(images)
+     for i in types:
+          if images.endswith(i):        
+              image.append(images)
 
 
 clips=[]
@@ -113,6 +111,8 @@ clips=[]
 def blur(image):
     """ Returns a blurred (radius=4 pixels) version of the image """
     return gaussian(image.astype(float), sigma=4)
+
+#Fetching the Images from the folder Image
 
 for i in range(len(image)):
      filepath = "images/"+image[i]
@@ -142,9 +142,9 @@ for i in range(len(image)):
      effect = random.choice(effects)
      pos = random.choice(slide)
      if effect == a or effect == b :
-        final = final.fx(effect, duration=effectDuration, side = pos)
+        final = final.fx(effect, duration = effectDuration, side = pos)
      else :
-        final = final.fx(effect, duration=effectDuration )
+        final = final.fx(effect, duration = effectDuration )
      clips.append(final)
 
 
@@ -187,7 +187,7 @@ for list  in  rows:
           
      texts.append(final_clip2)
 
-#Fetching the Images from the folder Image
+
 
 
 #Putting the all clips together to make it a ready for rendering
@@ -208,8 +208,8 @@ for list in rowsN:
      Fps = int(list[1])
      Codec = list[2]
      Audio_codec = list[3]
-     video_clip1=video_clip.resize(width=int(list[4]),height=int(list[5]))
+     video_clip1=video_clip.resize(width = int(list[4]),height = int(list[5]))
      video_clip1.write_videofile(VideoFileName,fps = Fps,\
      remove_temp=True,codec = Codec,audio_codec = Audio_codec)
-
+     
 
