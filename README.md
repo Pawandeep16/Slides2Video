@@ -34,7 +34,7 @@ python3 -m pip install --upgrade Pillow
 
 1. Put the Images in the images folder
 2. Update the CSv file for text in the video.
-3. Run the command --> chmod +x filename.py(defaultname is Images2Video.py)
+3. Run the command --> chmod +x Images2Video.py (defaultname is Images2Video.py)
 4. This will make it executable
 5. Run command python3 Images2Video.py
 6. play the video from folder
