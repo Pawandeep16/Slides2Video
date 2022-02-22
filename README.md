@@ -10,8 +10,10 @@ sudo apt-get -y install python3-pip
 
 moviepy liberary must be installed to install moviepy run command
 
-pip install moviepy
+pip install moviepy 
+<br>
 install imagemagick run the following command
+<br>
 sudo apt install imagemagick
 
 goto ---- /etc/ImageMagick-6/policy.xml file  
