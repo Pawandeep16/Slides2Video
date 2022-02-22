@@ -8,25 +8,27 @@ install the package installer pip for python
  
 sudo apt-get -y install python3-pip
 
-moviepy liberary must be installed to install moviepy run command
+### moviepy liberary must be installed to install moviepy run command
 
 pip install moviepy 
 <br>
-install imagemagick run the following command
+### install imagemagick run the following command
 <br>
+
 sudo apt install imagemagick
 
 goto ---- /etc/ImageMagick-6/policy.xml file  
+
 In the file comment out the line
 
 "policy domain="path" rights="none" pattern="@*" 
   you can found this at the bottom part of the file
 
-Install scikit-image
+### Install scikit-image
 
 pip install -U scikit-image
 
-install pillow using command as follow
+### install pillow using command as follow
 
 python3 -m pip install --upgrade Pillow
 
